@@ -28,20 +28,20 @@ This project demonstrates a complete end-to-end data pipeline using Microsoft Az
 
 ## 📊 Analytical Questions Answered
 
-1. **How many male and female athletes participated per country?**  
-   → From `EntriesGender.csv`, grouped by `Country` and `Gender`.
+1. **Which disciplines are represented by athletes from Malaysia?**  
+   → Queried from `Athletes` table by filtering `Country = 'Malaysia'`.
 
-2. **Which countries won the most medals in each sport?**  
-   → Analyzed from `Medals.csv`, grouped by `Country` and `Discipline`.
+2. **How many coaches are there per country?**  
+   → Aggregated from `Coaches` table using `COUNT(*) GROUP BY Country`.
 
-3. **Which athletes won the most medals in the Tokyo Olympics?**  
-   → Aggregated from `Athletes.csv`, with medal data where applicable.
+3. **Which disciplines have more female than male participants?**  
+   → Analyzed from `EntriesGender` table by comparing `Female > Male`.
 
-4. **Which countries had the most coaches per sport?**  
-   → Summarized using `Coaches.csv`, grouped by `Discipline` and `Country`.
+4. **Which countries have both athletes and coaches in the same discipline?**  
+   → Identified via join between `Athletes` and `Coaches` on `Country` and `Discipline`.
 
-5. **Which sports had the most balanced gender representation?**  
-   → Calculated using `EntriesGender.csv` by comparing male/female counts.
+5. **Which medal-winning countries had teams in Football?**  
+   → Joined `Medals` and `Teams` tables where `Discipline = 'Football'`.
 
 ---
 
@@ -49,7 +49,7 @@ This project demonstrates a complete end-to-end data pipeline using Microsoft Az
 
 ```text
 ├── data/                 → Raw Kaggle datasets (CSV)
-├── data_ingestion/       → ADF pipeline configs or descriptions
+├── data_ingestion/       → ADF pipeline configs or exported template (JSON)
 ├── transformations/      → Databricks notebooks (PySpark)
-├── synapse_queries/      → SQL scripts run on Synapse for analytics
-├── visuals/              → (Optional) Chart screenshots or insights
+├── synapse_queries/      → SQL scripts for analysis
+├── visuals/              → (Optional) Chart screenshots or dashboard exports
